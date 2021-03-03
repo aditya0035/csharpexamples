@@ -80,6 +80,17 @@ byte[] data=new BinaryReader(stream).ReadBytes((int)stream.length);
   > * Flush Method: Forces internally buffered data to be written immediately. e.g. stream.Flush(); stream.Close();
   > * Closing Or Dispose automatically call Flush.
 
+**Timeouts**
+* CanTimeout=true => stream support read and write timeout e.g. Network Stream
+* ReadTimeout & WriteTimeout represent timeout in ms, 0 => no timeout
+* ReadAsync/WriteAsync do not support timeouts but can be achieved using cancellation token
+
+**Thread Safety**
+* Stream are not thread safe
+* Workaround is via static Synchronized method, take stream as input and return tread safe wrapper.Wrapper 
+obtain exclusive lock around read, write & seek make sure only single thread can perform operation at a time.
+
+**Backing Store Stream**
 
 
 
